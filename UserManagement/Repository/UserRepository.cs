@@ -45,7 +45,6 @@ namespace UserManagement.Repository
                 return result;
             }
         }
-
         public async Task<int> UpdateUserDetailsAsync(User user)
         {
             using (var connection = new MySqlConnection(dbConnection))

@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement", "TaskManag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationServer", "AuthenticationServer\AuthenticationServer.csproj", "{3071EEE4-62AD-4016-9E8A-71B160F285DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Test", "UserManagement.Test\UserManagement.Test.csproj", "{412A1D7F-22BE-4E3C-AC08-5C7635BA5E73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Test", "UserManagement.Test\UserManagement.Test.csproj", "{412A1D7F-22BE-4E3C-AC08-5C7635BA5E73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Test", "TaskManagement.Test\TaskManagement.Test.csproj", "{434A5D4C-97F5-44AB-A6BC-E206B5F21133}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{412A1D7F-22BE-4E3C-AC08-5C7635BA5E73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{412A1D7F-22BE-4E3C-AC08-5C7635BA5E73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{412A1D7F-22BE-4E3C-AC08-5C7635BA5E73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{434A5D4C-97F5-44AB-A6BC-E206B5F21133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{434A5D4C-97F5-44AB-A6BC-E206B5F21133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{434A5D4C-97F5-44AB-A6BC-E206B5F21133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{434A5D4C-97F5-44AB-A6BC-E206B5F21133}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
