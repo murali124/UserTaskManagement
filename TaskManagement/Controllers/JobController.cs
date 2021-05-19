@@ -71,7 +71,7 @@ namespace TaskManagement.Controllers
 
         [HttpPost]
         [Route("userTaskMapping")]
-        public async Task UserJobMappingAsync(List<JobUserMapping> jobUserMapping)
+        public async Task UserJobMappingAsync(List<JobUserIdMapping> jobUserMapping)
         {
             if (jobUserMapping == null)
             {
@@ -79,6 +79,13 @@ namespace TaskManagement.Controllers
             }
 
             await _jobService.UserJobMappingAsync(jobUserMapping);
+        }
+
+        [HttpPost]
+        [Route("getUserTaskMapping")]
+        public async Task<IEnumerable<object>> GetUserJobMappingAsync()
+        {
+           return await _jobService.GetUserJobMappingAsync();
         }
     }
 }

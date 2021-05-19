@@ -40,7 +40,7 @@ namespace TaskManagement.Test
         [Fact]
         public async Task ShouldStoreUserObjectAndReturnSuccessAsync()
         {
-            var _job = new Job { Title = "JobTitle", Description="JobDescription", Status="JobStatus" };
+            var _job = new Job { Title = "JobTitle", Description = "JobDescription", Status = "JobStatus" };
 
             var result = await _jobController.SaveJobDetailsAsync(_job);
 

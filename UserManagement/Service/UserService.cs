@@ -11,6 +11,7 @@ namespace UserManagement.Service
         Task<int> SaveUserDetailsAsync(User user);
         Task<int> UpdateUserDetailsAsync(User user);
         Task<int> DeleteUserDetailsAsync(int userId);
+        Task<IEnumerable<User>> GetUserDetailsByIdAsync(IEnumerable<int> userId);
     }
     public class UserService : IUserService
     {
@@ -37,6 +38,10 @@ namespace UserManagement.Service
         public async Task<int> DeleteUserDetailsAsync(int userId)
         {
             return await _userRepository.DeleteUserDetailsAsync(userId);
+        }
+        public async Task<IEnumerable<User>> GetUserDetailsByIdAsync(IEnumerable<int> userId)
+        {
+            return await _userRepository.GetUserDetailsByIdAsync(userId);
         }
     }
 }

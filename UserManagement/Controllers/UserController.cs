@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UserManagement.Model;
 using UserManagement.Service;
@@ -64,6 +65,15 @@ namespace UserManagement.Controllers
 
             var result = await _userService.DeleteUserDetailsAsync(userId);
             return result == 1 ? Ok("Success") : BadRequest("Not Success");
+        }
+
+        [HttpGet]
+        [Route("getUserDetailsById")]
+        public async Task<JsonResult> GetUserDetailsByIdAsync(IEnumerable<int> userId)
+        {
+            var result = await _userService.GetUserDetailsByIdAsync(userId);
+            return new JsonResult(result);
+            //return await Task.Run(() => new JsonResult(HttpStatusCode.BadGateway));
         }
     }
 }

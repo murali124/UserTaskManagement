@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UserManagement.Model;
 
@@ -12,7 +14,7 @@ namespace UserManagement.Repository
         Task<int> SaveUserDetailsAsync(User user);
         Task<int> UpdateUserDetailsAsync(User user);
         Task<int> DeleteUserDetailsAsync(int userId);
-
+        Task<IEnumerable<User>> GetUserDetailsByIdAsync(IEnumerable<int> userId);
     }
 
     public class UserRepository : IUserRepository
@@ -75,6 +77,22 @@ namespace UserManagement.Repository
                 });
 
                 return result;
+            }
+        }
+
+        public async Task<IEnumerable<User>> GetUserDetailsByIdAsync(IEnumerable<int> userId)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(dbConnection))
+                {
+                    return await connection.QueryAsync<User>("SELECT Id, Code, Name FROM users WHERE Id IN @Id", new { Id = userId.ToArray() });
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return new List<User>();
             }
         }
     }

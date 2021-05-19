@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TaskManagement.Core;
 using TaskManagement.Model;
 using TaskManagement.Repository;
 
@@ -13,10 +14,11 @@ namespace TaskManagement.Service
         Task<int> SaveJobDetailsAsync(Job job);
         Task<int> UpdateJobDetailsAsync(Job job);
         Task<int> DeleteJobDetailsAsync(int jobId);
-        Task UserJobMappingAsync(List<JobUserMapping> jobUserMapping);
+        Task UserJobMappingAsync(List<JobUserIdMapping> jobUserMapping);
+        Task<IEnumerable<object>> GetUserJobMappingAsync();
     }
 
-    public class JobService: IJobService
+    public class JobService : IJobService
     {
         private readonly IJobRepository _jobRepository;
         public JobService(IJobRepository jobRepository)
@@ -43,14 +45,28 @@ namespace TaskManagement.Service
             return await _jobRepository.DeleteJobDetailsAsync(jobId);
         }
 
-        public async Task UserJobMappingAsync(List<JobUserMapping> jobUserMappings)
+        public async Task UserJobMappingAsync(List<JobUserIdMapping> jobUserMappings)
         {
             await Task.Run(() => jobUserMappings.Select(jobUserMapping => _jobRepository.UserJobMappingAsync(jobUserMapping)));
+        }
 
-            //foreach (var jobUserMapping in jobUserMappings)
-            //{
-            //    await _jobRepository.UserJobMappingAsync(jobUserMapping);
-            //}
+        public async Task<IEnumerable<object>> GetUserJobMappingAsync()
+        {
+            var userJobMapping = await _jobRepository.GetUserJobMappingAsync();
+            var job = await _jobRepository.GetJobDetailsAsync();
+            var users = JsonConvert.DeserializeObject<IEnumerable<User>>(await GetUserDetailsAsync(userJobMapping.Select(e => e.UserId)));
+            var userTaskmapping = from m in userJobMapping
+                          join j in job on m.JobId equals j.id
+                          select new { j.id, j.Title, j.Description, m.UserId } into jb
+                          join u in users on jb.UserId equals u.Id
+                          select new { JobId = jb.id, JobTitle = jb.Title, JobDescription = jb.Description, UserId = u.Id, UserCode = u.Code, UserName = u.Name };
+
+            return userTaskmapping;
+        }
+        public async Task<string> GetUserDetailsAsync(IEnumerable<int> userId)
+        {
+            var result = await HttpService.GetAsync("https://localhost:44312/api/getUserDetailsById", new Dictionary<string, string>(), JsonConvert.SerializeObject(userId));
+            return result.Content.ReadAsStringAsync().Result;
         }
     }
 }

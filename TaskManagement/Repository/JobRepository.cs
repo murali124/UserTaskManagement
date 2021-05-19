@@ -13,7 +13,8 @@ namespace TaskManagement.Repository
         Task<int> SaveJobDetailsAsync(Job job);
         Task<int> UpdateJobDetailsAsync(Job job);
         Task<int> DeleteJobDetailsAsync(int JobId);
-        Task<int> UserJobMappingAsync(JobUserMapping jobUserMapping);
+        Task<int> UserJobMappingAsync(JobUserIdMapping jobUserMapping);
+        Task<IEnumerable<JobUserMapping>> GetUserJobMappingAsync();
     }
 
     public class JobRepository : IJobRepository
@@ -78,7 +79,7 @@ namespace TaskManagement.Repository
             }
         }
 
-        public async Task<int> UserJobMappingAsync(JobUserMapping jobUserMapping)
+        public async Task<int> UserJobMappingAsync(JobUserIdMapping jobUserMapping)
         {
             using (var connection = new NpgsqlConnection(dbConnection))
             {
@@ -91,6 +92,14 @@ namespace TaskManagement.Repository
                 });
 
                 return result;
+            }
+        }
+
+        public async Task<IEnumerable<JobUserMapping>> GetUserJobMappingAsync()
+        {
+            using (var connection = new NpgsqlConnection(dbConnection))
+            {
+                return await connection.QueryAsync<JobUserMapping>("SELECT TaskId, UserId FROM TaskUserMapping where isactive = 1");
             }
         }
     }
