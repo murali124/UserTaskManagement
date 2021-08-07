@@ -8,15 +8,6 @@ using UserManagement.Model;
 
 namespace UserManagement.Repository
 {
-    public interface IUserRepository
-    {
-        Task<IEnumerable<User>> GetUserDetailsAsync();
-        Task<int> SaveUserDetailsAsync(User user);
-        Task<int> UpdateUserDetailsAsync(User user);
-        Task<int> DeleteUserDetailsAsync(int userId);
-        Task<IEnumerable<User>> GetUserDetailsByIdAsync(IEnumerable<int> userId);
-    }
-
     public class UserRepository : IUserRepository
     {
         const string dbConnection = "Server=localhost;Port=3306;Database=userdb;User=root;Password=Mysql@12345";
