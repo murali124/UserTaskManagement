@@ -79,6 +79,12 @@ namespace TaskManagement
         app.UseDeveloperExceptionPage();
       }
 
+      var configBuider = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true);
+
+      configBuider.Build();
+
       app.UseHttpsRedirection();
 
       app.UseRouting();

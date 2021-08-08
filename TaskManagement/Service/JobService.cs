@@ -55,6 +55,7 @@ namespace TaskManagement.Service
         }
         public async Task<string> GetUserDetailsAsync(IEnumerable<int> userId)
         {
+            //to-do - url shuld be in config file
             var result = await HttpService.GetAsync("https://localhost:44312/api/getUserDetailsById", new Dictionary<string, string>(), JsonConvert.SerializeObject(userId));
             return result.Content.ReadAsStringAsync().Result;
         }
