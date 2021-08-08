@@ -1,6 +1,4 @@
-﻿using Dapper;
-using MySql.Data.MySqlClient;
-using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,84 +6,38 @@ using UserManagement.Model;
 
 namespace UserManagement.Repository
 {
-    public class UserRepository : IUserRepository
+  public class UserRepository : IUserRepository
+  {
+
+    UserDBContext _userDBContext;
+
+    public UserRepository(UserDBContext userDBContext)
     {
-        const string dbConnection = "Server=localhost;Port=3306;Database=userdb;User=root;Password=Mysql@12345";
-        //const string dbConnection = Configuration.GetConnectionString("UserDbConnection");
-
-        public async Task<IEnumerable<User>> GetUserDetailsAsync()
-        {
-            using (var connection = new MySqlConnection(dbConnection))
-            {
-                return await connection.QueryAsync<User>("SELECT * FROM users");
-            }
-        }
-
-        public async Task<int> SaveUserDetailsAsync(User user)
-        {
-            using (var connection = new MySqlConnection(dbConnection))
-            {
-                string insertQuery = @"INSERT INTO Users(Code, Name, Address, PhoneNumber) VALUES (@Code, @Name, @Address, @PhoneNumber)";
-
-                var result = await connection.ExecuteAsync(insertQuery, new
-                {
-                    user.Code,
-                    user.Name,
-                    user.Address,
-                    user.PhoneNumber
-                });
-
-                return result;
-            }
-        }
-        public async Task<int> UpdateUserDetailsAsync(User user)
-        {
-            using (var connection = new MySqlConnection(dbConnection))
-            {
-                string updateQuery = @"UPDATE Users SET Name=@Name, Address=@Address, PhoneNumber=@PhoneNumber WHERE Id = @Id";
-
-                var result = await connection.ExecuteAsync(updateQuery, new
-                {
-                    user.Name,
-                    user.Address,
-                    user.PhoneNumber,
-                    user.Id
-                });
-
-                return result;
-            }
-        }
-        public async Task<int> DeleteUserDetailsAsync(int userId)
-        {
-            using (var connection = new MySqlConnection(dbConnection))
-            {
-                string updateQuery = @"UPDATE Users SET IsActive=@IsActive WHERE Id = @userId";
-
-                var result = await connection.ExecuteAsync(updateQuery, new
-                {
-                    IsActive = 0,
-                    userId
-                });
-
-                return result;
-            }
-        }
-
-        public async Task<IEnumerable<User>> GetUserDetailsByIdAsync(IEnumerable<int> userId)
-        {
-            try
-            {
-                using (var connection = new MySqlConnection(dbConnection))
-                {
-                    return await connection.QueryAsync<User>("SELECT Id, Code, Name FROM users WHERE Id IN @Id", new { Id = userId.ToArray() });
-                }
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e);
-                return new List<User>();
-            }
-        }
+      _userDBContext = userDBContext;
     }
-}
+    public async Task<IEnumerable<User>> GetUserDetailsAsync() => await _userDBContext.Users.ToListAsync();
 
+    public async Task<int> SaveUserDetailsAsync(User user)
+    {
+      _userDBContext.Users.Add(user);
+      return await _userDBContext.SaveChangesAsync();
+    }
+
+    public async Task<int> UpdateUserDetailsAsync(User user)
+    {
+      _userDBContext.Users.Update(user);
+      return await _userDBContext.SaveChangesAsync();
+    }
+
+    public async Task<int> DeleteUserDetailsAsync(int userId)
+    {
+      var usr = new User() { UserId = userId };
+
+      _userDBContext.Users.Remove(usr);
+      return await _userDBContext.SaveChangesAsync();
+    }
+
+    public async Task<IEnumerable<User>> GetUserDetailsByIdAsync(IEnumerable<int> userId) =>
+      await _userDBContext.Users.Where(e => userId.Contains(e.UserId)).ToListAsync();
+  }
+}

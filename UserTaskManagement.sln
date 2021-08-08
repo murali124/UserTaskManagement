@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationServer", "Aut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Test", "UserManagement.Test\UserManagement.Test.csproj", "{412A1D7F-22BE-4E3C-AC08-5C7635BA5E73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Test", "TaskManagement.Test\TaskManagement.Test.csproj", "{434A5D4C-97F5-44AB-A6BC-E206B5F21133}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Test", "TaskManagement.Test\TaskManagement.Test.csproj", "{434A5D4C-97F5-44AB-A6BC-E206B5F21133}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

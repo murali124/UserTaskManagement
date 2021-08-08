@@ -10,7 +10,7 @@ namespace TaskManagement.Service
     Task<int> SaveJobDetailsAsync(Job job);
     Task<int> UpdateJobDetailsAsync(Job job);
     Task<int> DeleteJobDetailsAsync(int jobId);
-    Task UserJobMappingAsync(List<JobUserIdMapping> jobUserMapping);
+    Task UserJobMappingAsync(List<JobUserMapping> jobUserMapping);
     Task<IEnumerable<object>> GetUserJobMappingAsync();
   }
 }

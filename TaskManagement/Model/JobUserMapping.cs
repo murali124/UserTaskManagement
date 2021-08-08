@@ -2,16 +2,17 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace UserManagement.Model
+namespace TaskManagement.Model
 {
-  public class User
+  public class JobUserMapping
   {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Key]
+    public int JobUserId { get; set; }
+    public int JobId { get; set; }
+    public string JobName { get; set; }
     public int UserId { get; set; }
-    public string Code { get; set; }
-    public string Name { get; set; }
-    public string Address { get; set; }
-    public string PhoneNumber { get; set; }
+    public string UserName { get; set; }
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime CreatedDate { get; set; }
   }

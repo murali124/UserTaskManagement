@@ -35,7 +35,7 @@ namespace TaskManagement.Service
             return await _jobRepository.DeleteJobDetailsAsync(jobId);
         }
 
-        public async Task UserJobMappingAsync(List<JobUserIdMapping> jobUserMappings)
+        public async Task UserJobMappingAsync(List<JobUserMapping> jobUserMappings)
         {
             await Task.Run(() => jobUserMappings.Select(jobUserMapping => _jobRepository.UserJobMappingAsync(jobUserMapping)));
         }
@@ -46,10 +46,10 @@ namespace TaskManagement.Service
             var job = await _jobRepository.GetJobDetailsAsync();
             var users = JsonConvert.DeserializeObject<IEnumerable<User>>(await GetUserDetailsAsync(userJobMapping.Select(e => e.UserId)));
             var userTaskmapping = from m in userJobMapping
-                          join j in job on m.JobId equals j.id
-                          select new { j.id, j.Title, j.Description, m.UserId } into jb
+                          join j in job on m.JobId equals j.JobId
+                          select new { j.JobId, j.Title, j.Description, m.UserId } into jb
                           join u in users on jb.UserId equals u.Id
-                          select new { JobId = jb.id, JobTitle = jb.Title, JobDescription = jb.Description, UserId = u.Id, UserCode = u.Code, UserName = u.Name };
+                          select new { JobId = jb.JobId, JobTitle = jb.Title, JobDescription = jb.Description, UserId = u.Id, UserCode = u.Code, UserName = u.Name };
 
             return userTaskmapping;
         }

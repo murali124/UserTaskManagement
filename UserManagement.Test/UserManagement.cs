@@ -58,7 +58,7 @@ namespace UserManagement.Test
         [Fact]
         public async Task ShouldUpdateUserObjectAndReturnSuccessAsync()
         {
-            var _user = new User { Id = 3, Name = "UserName3", Code = "UserCode3", Address = "UserAddress", PhoneNumber = "+919867" };
+            var _user = new User { UserId = 3, Name = "UserName3", Code = "UserCode3", Address = "UserAddress", PhoneNumber = "+919867" };
 
             var result = await _userController.UpdateUserDetailsAsync(_user);
 

@@ -71,7 +71,7 @@ namespace TaskManagement.Controllers
 
         [HttpPost]
         [Route("userTaskMapping")]
-        public async Task UserJobMappingAsync(List<JobUserIdMapping> jobUserMapping)
+        public async Task UserJobMappingAsync(List<JobUserMapping> jobUserMapping)
         {
             if (jobUserMapping == null)
             {
