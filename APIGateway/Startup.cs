@@ -75,7 +75,7 @@ namespace APIGateway
                 endpoints.MapControllers();
             });
 
-            app.UseOcelot().Wait();
+            app.UseOcelot().GetAwaiter().GetResult();
         }
     }
 }

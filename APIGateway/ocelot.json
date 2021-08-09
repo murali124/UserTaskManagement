@@ -22,7 +22,11 @@
         }
       ],
       "UpstreamPathTemplate": "/api/getUserDetails",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/api/user/saveUserDetails",
@@ -34,7 +38,11 @@
         }
       ],
       "UpstreamPathTemplate": "/api/saveUserDetails",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [ "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/api/user/updateUserDetails",
@@ -46,7 +54,11 @@
         }
       ],
       "UpstreamPathTemplate": "/api/updateUserDetails",
-      "UpstreamHttpMethod": [ "PUT" ]
+      "UpstreamHttpMethod": [ "PUT" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/api/user/deleteUserDetails/{userId}",
@@ -58,7 +70,11 @@
         }
       ],
       "UpstreamPathTemplate": "/api/deleteUserDetails/{userId}",
-      "UpstreamHttpMethod": [ "PUT" ]
+      "UpstreamHttpMethod": [ "PUT" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/api/job/getTaskDetails",
@@ -70,7 +86,11 @@
         }
       ],
       "UpstreamPathTemplate": "/api/getTaskDetails",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/api/job/saveJobDetails",
@@ -82,7 +102,11 @@
         }
       ],
       "UpstreamPathTemplate": "/api/saveJobDetails",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [ "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/api/job/updateJobDetails",
@@ -94,7 +118,11 @@
         }
       ],
       "UpstreamPathTemplate": "/api/updateJobDetails",
-      "UpstreamHttpMethod": [ "PUT" ]
+      "UpstreamHttpMethod": [ "PUT" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/api/job/deleteJobDetails/{jobId}",
@@ -106,7 +134,11 @@
         }
       ],
       "UpstreamPathTemplate": "/api/deleteJobDetails/{jobId}",
-      "UpstreamHttpMethod": [ "PUT" ]
+      "UpstreamHttpMethod": [ "PUT" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/api/job/userTaskMapping",
@@ -118,7 +150,11 @@
         }
       ],
       "UpstreamPathTemplate": "/api/userTaskMapping",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [ "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/api/user/getUserDetailsById",
@@ -130,7 +166,11 @@
         }
       ],
       "UpstreamPathTemplate": "/api/getUserDetailsById",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
     }
   ],
   "GlobalConfiguration": {

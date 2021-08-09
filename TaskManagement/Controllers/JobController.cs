@@ -11,7 +11,7 @@ using TaskManagement.Service;
 
 namespace TaskManagement.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/job")]
     [ApiController]
     public class JobController : ControllerBase

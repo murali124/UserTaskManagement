@@ -28,7 +28,6 @@ namespace AuthenticationServer.Controllers
         {
             if (name == "user" && pwd == "pass")
             {
-
                 var now = DateTime.UtcNow;
 
                 var claims = new Claim[]
