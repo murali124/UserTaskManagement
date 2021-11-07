@@ -1,0 +1,13 @@
+EF core 
+ttd for service
+trans vs scope
+cors restriction base on server url
+cosuming app. setting based on env. deployment
+seperat folder for all interface
+use context for DBstring
+log file implements (anyaction or error)
+postman varable set
+local package import
+
+about DI in .net core
+postman automated
